@@ -1,0 +1,8 @@
+#mceu_32-body{
+    display: none;
+}
+#testimonial_submit{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
