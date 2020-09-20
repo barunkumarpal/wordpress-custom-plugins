@@ -46,6 +46,16 @@ add_action('wp_ajax_save_the_rating', 'save_the_rating_process');
 // Create Table for Rating
 require_once($plugin_path.'/inc/create_table_for_rating.php');
 
+
+
+// Show Rating on Admin Column
+require_once($plugin_path.'/inc/admin/columns.php');
+require_once($plugin_path.'/inc/admin/init.php');
+add_action('admin_init', 'out_dest_admin_init');
+
+
+
+
 // Activate
 require_once('activate.php');
 register_activation_hook(__FILE__, 'ods_activate_plugin');
