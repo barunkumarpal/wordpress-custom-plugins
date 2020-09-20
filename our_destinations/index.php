@@ -27,6 +27,24 @@ $plugin_path = dirname(ODS_PLUGIN_URL);
 require_once($plugin_path.'/inc/register_destinations.php');
 add_action('init', 'register_our_destinations');
 
+// Add Rating
+require_once($plugin_path.'/inc/add_rating_meta.php');
+add_action('save_post_destination', 'add_rating_meta_destination', 10, 3 );
+
+// Show Rating Star
+require_once($plugin_path.'/inc/add_star_for_rating.php');
+add_filter('the_content', 'add_star_for_rating');
+
+// Add Rating Plugin
+require_once($plugin_path.'/inc/rateit_plugin_enqueue.php');
+add_action( 'wp_enqueue_scripts', 'enqueue_rateit_plugin', 100);
+
+// Save Rating
+require_once($plugin_path.'/inc/process/save_the_rating.php');
+add_action('wp_ajax_save_the_rating', 'save_the_rating_process');
+
+// Create Table for Rating
+require_once($plugin_path.'/inc/create_table_for_rating.php');
 
 // Activate
 require_once('activate.php');
