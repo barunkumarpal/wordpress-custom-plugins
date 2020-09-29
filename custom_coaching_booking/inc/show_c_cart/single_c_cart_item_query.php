@@ -2,8 +2,7 @@
 
     $args = [
         'post_type' => 'c_product',
-        'post_id' => $item_id
-        
+        'post_id' => $item_id       
        
     ];
 
@@ -21,6 +20,6 @@
             include('single_c_cart_item.php');
         } wp_reset_postdata(); ?>
 
-   
+
 <?php
     }

@@ -19,12 +19,16 @@ function show_c_cart(){
             $cart_id = $item->cart_id;
             $item_id = $item->product_id;
             $item_qty = $item->product_qty;
+            $item_inst = $item->installments;
 
             include('single_c_cart_item_query.php');
             
             
             } 
         ?>
+        <div class="col-md-12 text-center">        
+            <button id="custom_cart_order_now" class="btn btn-info" data-id="<?php echo $current_user; ?>">Order Now</button>
+        </div>
         </div>
     </div>
 

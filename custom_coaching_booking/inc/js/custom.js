@@ -23,7 +23,7 @@ $(document).ready(function(){
     $('.c_cart_remv').on('click', function(){
        
         var dataID = $(this).data('id');
-        alert('clicked'+dataID)
+        // alert('clicked'+dataID)
         var form = {
             action: 'delete_from_c_cart',
             cartID: dataID            
@@ -34,6 +34,25 @@ $(document).ready(function(){
                 alert('Product successfully removed from your cart!')
             }else{
                 alert('Sorry! we could not remove the product from your cart')
+            }
+        })
+    })
+
+
+    // Create Order
+    $('#custom_cart_order_now').on('click', function(){
+        var dataID = $(this).data('id');
+        // alert('clicked'+dataID)
+        var form = {
+            action: 'create_c_order',
+            userID: dataID            
+        }
+
+        $.post(ccb_plgn_ajax.ajax_url, form, function(response){
+            if(response.status == 1){
+                alert('We have received you order successfully!')
+            }else{
+                alert('Sorry! we could not creat this order, Please try again.')
             }
         })
     })

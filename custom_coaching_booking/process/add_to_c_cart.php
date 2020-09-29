@@ -3,7 +3,7 @@ function add_to_c_cart(){
     $prod_ID = $_POST['prodID'];
     $user_ID = $_POST['userID'];
     $prod_qty = $_POST['prodQty'];
-    // $prod_inst = $_POST['installments'];
+    $prod_inst = $_POST['installments'];
 
     global $wpdb;
     $output = ['status' => 0 ];
@@ -13,8 +13,8 @@ function add_to_c_cart(){
         [
             'product_id' => $prod_ID,
             'user_id' => $user_ID,  
-            'product_qty' => $prod_qty
-            // 'installments' => $prod_inst
+            'product_qty' => $prod_qty,
+            'installments' => $prod_inst
         ],
         [
             '%d','%d','%d'

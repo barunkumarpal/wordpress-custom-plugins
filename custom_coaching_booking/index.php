@@ -24,9 +24,12 @@ $plugin_path = dirname(CBP_PLUGIN_PATH);
 require_once($plugin_path.'/enqueue.php');
 add_action('wp_enqueue_scripts', 'cbp_enqueue_styles');
 
-// Register Product Post Type
+// Register Post Type
 require_once($plugin_path.'/inc/post_types/register_product.php');
 add_action('init', 'register_product_type');
+
+require_once($plugin_path.'/inc/post_types/register_orders.php');
+add_action('init', 'register_custom_orders');
 
 // Show Product with Shortcode
 require_once($plugin_path.'/inc/show_c_products/show_c_products.php');
@@ -43,6 +46,10 @@ add_action('wp_ajax_save_to_cart', 'add_to_c_cart');
 // Remove from Cart 
 require_once($plugin_path.'/process/delete_from_c_cart.php');
 add_action('wp_ajax_delete_from_c_cart', 'delete_from_c_cart');
+
+// Create Order
+require_once($plugin_path.'/process/create_custom_order.php');
+ add_action('wp_ajax_create_c_order', 'create_custom_order');
 
 // Activate
 require_once($plugin_path.'/activate.php');
