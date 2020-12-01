@@ -23,6 +23,7 @@ function show_plate_variations(){?>
         </button>
     </div>
 
+<?php if(get_field('show_plate_sizes','option') && get_field('show_plate_sizes','option') == 'Yes'){?>
     <div class="plate_size_front front_option"  back_id="plate_size_input">
         <p class="title">2 Plate Size
             <img src="<?php echo plugins_url('/img/right.png', CPBN_PLUGIN_PATH); ?>" alt="" class="go_into_img">
@@ -46,9 +47,13 @@ function show_plate_variations(){?>
             <img src="<?php echo plugins_url('/img/right.png', CPBN_PLUGIN_PATH); ?>" alt="" class="go_back_img">
         </button>
     </div>
-
+<?php } ?>
     <div class="text_style_front front_option" back_id="text_style_input">
-        <p class="title">3 Text Style
+        <p class="title"><?php   
+
+            if(get_field('show_plate_sizes','option') && get_field('show_plate_sizes','option') == 'Yes'){ echo '3';}else{echo '2';}
+            ?> Text Style
+
             <img src="<?php echo plugins_url('/img/right.png', CPBN_PLUGIN_PATH); ?>" alt="" class="go_into_img">
         </p>
     </div>
@@ -74,10 +79,12 @@ function show_plate_variations(){?>
                     $closeup_id = get_sub_field('closeup_id');
                     $closeup_image = get_sub_field('closeup_image');
                     $text_style_class = get_sub_field('text_style_class');
-                    // Do something...
+                    $text_shadow = get_sub_field('color');
+                
+                    if(!empty($title) && $title !==''){
 ?>
                     <div class="image">
-                        <img src="<?php echo $front_image; ?>" alt="" text_style_name="<?php echo $title; ?>" text_style_class="<?php echo $text_style_class; ?>" data-id="1" class="text-style-img">
+                        <img src="<?php echo $front_image; ?>" alt="" text_style_name="<?php echo $title; ?>" text_style_class="<?php echo $text_style_class; ?>" text_shadow_color="<?php echo $text_shadow; ?>" data-id="1" class="text-style-img">
                     </div>
                     <div class="desc-row">
                         <div class="left">
@@ -110,7 +117,7 @@ function show_plate_variations(){?>
                         </div>
                     </div>
             
-<?php                // End loop.
+            <?php               }  // End loop.
                 endwhile;
             
             // No value.
@@ -129,7 +136,10 @@ function show_plate_variations(){?>
 
     <!-- Badges -->
     <div class="badge_style_front front_option" back_id="badge_style_input">
-        <p class="title">4 Badge
+        <p class="title"><?php   
+
+            if(get_field('show_plate_sizes','option') && get_field('show_plate_sizes','option') == 'Yes'){ echo '4';}else{echo '3';}
+            ?> Badge
             <img src="<?php echo plugins_url('/img/right.png', CPBN_PLUGIN_PATH); ?>" alt="" class="go_into_img">
         </p>
     </div>
@@ -168,7 +178,9 @@ function show_plate_variations(){?>
 
     <!-- Border -->
     <div class="border_style_front front_option" back_id="border_style_input">
-        <p class="title">5 Border
+        <p class="title"><?php  
+            if(get_field('show_plate_sizes','option') && get_field('show_plate_sizes','option') == 'Yes'){ echo '5';}else{echo '4';}
+            ?> Border
             <img src="<?php echo plugins_url('/img/right.png', CPBN_PLUGIN_PATH); ?>" alt="" class="go_into_img">
         </p>
     </div>
@@ -196,7 +208,9 @@ function show_plate_variations(){?>
 
     <!-- Slogan -->
     <div class="slogan_style_front front_option" back_id="slogan_style_input">
-        <p class="title">6 Slogan
+        <p class="title"><?php   
+            if(get_field('show_plate_sizes','option') && get_field('show_plate_sizes','option') == 'Yes'){ echo '6';}else{echo '5';}
+            ?> Slogan
             <img src="<?php echo plugins_url('/img/right.png', CPBN_PLUGIN_PATH); ?>" alt="" class="go_into_img">
         </p>
     </div>

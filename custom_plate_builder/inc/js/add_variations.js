@@ -145,6 +145,7 @@ $(document).ready(function(){
             if(plates !== undefined){
                 var selected_style_img = $('.text-style-img.selected').attr('text_style_name')              
                 var selected_style_class = $('.text-style-img.selected').attr('text_style_class')              
+                var text_shadow_color = $('.text-style-img.selected').attr('text_shadow_color')              
 
                
 
@@ -165,8 +166,13 @@ $(document).ready(function(){
     
                     $('.plate_image_showcase .reg_no p').removeAttr('class')
                   
-    
+                    
                     $('.plate_image_showcase .reg_no p').addClass(selected_style_class)
+                    if(text_shadow_color !== ""){
+                        $('.plate_image_showcase .reg_no p').css("text-shadow", "-4px 0px 1px"+text_shadow_color)
+                    }else{
+                        $('.plate_image_showcase .reg_no p').css("text-shadow", "")
+                    }
     
                     var slogan_text = $('#slogal_text').val(),
                     selected_border = $('#border_color').val(),
@@ -387,18 +393,26 @@ $(document).ready(function(){
             slogan_text = $('#slogal_text').val()              
     
             $('#slogan_color').val(selected_slogan_color)
-            $('#slogan_text').val(slogan_text)
-    
-            $('#slogan_style_input').removeClass('active')
-            $('.front_option').removeClass('hidden').addClass('active')
+            $('#slogan_text').val(slogan_text) 
+            
 
-            if(slogan_text !== ''){
-                $('.plate_image_showcase .slogan').addClass('active')
-                $('.plate_image_showcase .slogan').html('<p>'+slogan_text+'</p>')
-            }else{
-                $('.plate_image_showcase .slogan').removeClass('active')
-                $('.plate_image_showcase .slogan').html('')
+            
+            if(slogan_text.length >= 26){
+                $('.notify_modal').addClass('active')
+                $('.notify_alert').addClass('active')
+                $('.notify_alert .nofity_title').text('Please add your slogan within 25 characters.')
             }
+            else{
+
+                
+                if(slogan_text !== ''){
+                    $('.plate_image_showcase .slogan').addClass('active')
+                    $('.plate_image_showcase .slogan').html('<p>'+slogan_text+'</p>')
+                }            
+                else{
+                    $('.plate_image_showcase .slogan').removeClass('active')
+                    $('.plate_image_showcase .slogan').html('')
+                }
 
             // var selected_border = $('#border_color').val(),
             //     badge_name =  $('#badge_name').val()
@@ -411,39 +425,46 @@ $(document).ready(function(){
                 var add_to_cart_btn = $('#nplate_add_to_cart')
                         add_to_cart_btn.attr('disabled', true)
 
-            var form = {
-                action: 'fetch_regular_plate_price',
-                plate_count: plates,
-                prod_id: prod_id,
-                border_color: selected_border,
-                slogan: slogan_text,
-                badge_name: badge_name,
-                text_style: text_style            
-            }
-            
-            $.post(cpbn_plugin_ajax.ajax_url, form, function(response){ //alert(response)
-                //alert(response.price)
-                
-                if(response.status == 1 ){ 
-                var price = response.price
-                
-                var old_price = $('span#plate_price').html('£'+price)
-                add_to_cart_btn.removeAttr('disabled')
-                }else if(response.status == 0){
-                    // alert(response.error_message) 
-                    $('.notify_modal').addClass('active')
-                    $('.notify_alert').addClass('active')
-                    $('.notify_alert .nofity_title').text('Process Failed! Please try again')
-                    // add_to_cart_btn.removeAttr('disabled')
-                }else{
-                    // alert(response.empty_data)
-                    $('.notify_modal').addClass('active')
-                    $('.notify_alert').addClass('active')
-                    $('.notify_alert .nofity_title').text('Process Failed! Please try again')
-                    // add_to_cart_btn.removeAttr('disabled')
+                var form = {
+                    action: 'fetch_regular_plate_price',
+                    plate_count: plates,
+                    prod_id: prod_id,
+                    border_color: selected_border,
+                    slogan: slogan_text,
+                    badge_name: badge_name,
+                    text_style: text_style            
                 }
                 
-            })
+                $.post(cpbn_plugin_ajax.ajax_url, form, function(response){ //alert(response)
+                    //alert(response.price)
+                    
+                    if(response.status == 1 ){ 
+                    var price = response.price
+                    
+                    var old_price = $('span#plate_price').html('£'+price)
+                    add_to_cart_btn.removeAttr('disabled')
+                    }else if(response.status == 0){
+                        // alert(response.error_message) 
+                        $('.notify_modal').addClass('active')
+                        $('.notify_alert').addClass('active')
+                        $('.notify_alert .nofity_title').text('Process Failed! Please try again')
+                        // add_to_cart_btn.removeAttr('disabled')
+                    }else{
+                        // alert(response.empty_data)
+                        $('.notify_modal').addClass('active')
+                        $('.notify_alert').addClass('active')
+                        $('.notify_alert .nofity_title').text('Process Failed! Please try again')
+                        // add_to_cart_btn.removeAttr('disabled')
+                    }
+                    
+                })
+
+
+                $('#slogan_style_input').removeClass('active')
+                $('.front_option').removeClass('hidden').addClass('active')
+
+
+            }
 
         }else{
             $('.notify_modal').addClass('active')

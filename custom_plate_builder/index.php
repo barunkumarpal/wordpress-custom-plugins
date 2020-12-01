@@ -72,3 +72,9 @@ add_shortcode( 'show_plates', 'show_plates' );
 // Show Alert with Modal Shortcode
 require_once($plugin_path.'/inc/show_notification.php');
 add_shortcode( 'show_notification', 'show_notification' );
+
+// Fetch Cart Count AJAX
+require_once($plugin_path.'/inc/fetch_cart_count_ajax.php');
+
+add_action('wp_ajax_fetch_cart_count', 'fetch_cart_count_ajax');
+add_action('wp_ajax_nopriv_fetch_cart_count', 'fetch_cart_count_ajax');
