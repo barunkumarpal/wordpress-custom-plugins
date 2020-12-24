@@ -161,12 +161,10 @@ $(document).ready(function(){
                             }
                             
                             $.post(cpbn_plugin_ajax.ajax_url, form, function(response){
-                                // alert(response.cart_count)
-                                // alert(response.subtotal)
                                 if(response.status == 1 ){
                            
                                     $('#hfe-menu-cart__toggle_button .elementor-button-icon').attr('data-counter', response.cart_count)
-                                   $('.woocommerce-Price-amount.amount bdi').html(response.subtotal)
+                                   $('#hfe-menu-cart__toggle_button .woocommerce-Price-amount.amount bdi').html(response.subtotal)
                                 //    $('.woocommerce-Price-amount.amount bdi').html('<span class="woocommerce-Price-currencySymbol">£</span>'+response.subtotal)
                                 }
                                 
