@@ -23,6 +23,7 @@ $plugin_path = dirname(CWPL_PLUGIN_PATH);
 // Custom Login Url on Logout
 require_once($plugin_path.'/inc/custom_logout_url.php');
 add_action('wp_logout', 'custom_logout_url');
+add_action('init', 'custom_login_url');
 
 // Enqueue style
 require_once($plugin_path.'/inc/enqueue.php');

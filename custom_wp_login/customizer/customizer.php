@@ -16,31 +16,9 @@ function cwpl_customize_register($wp_customize){
     );
 
     // Section Option
-    $wp_customize->add_section( 
-        'cwpl_plugin_panel_section', 
-        array(
-            'title' => __( 'Logout Url' ),            
-            'panel' => 'cwpl_plugin_panel',
-            'priority' => 160,        
-        ) );
+    cwpl_customizer_sectons($wp_customize);
 
 
     // Setting
-    $wp_customize->add_setting(
-        'cwpl_logout_setting',
-        [
-            'transport' => 'postMessage', // or refresh
-        ]
-    );
-
-    // Control
-    $wp_customize->add_control( 
-        'control_id', 
-        array(
-            'label' => __( 'Logout Url', 'cwpl' ),
-            'type' => 'text',            
-            'section' => 'cwpl_plugin_panel_section',          
-            'settings' => 'cwpl_logout_setting'
-        )
-    );
+    cwpl_customizer_settings($wp_customize);
 }

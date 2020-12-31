@@ -3,22 +3,32 @@ $(document).ready(function(){
         var btn = $(this),
         btnTxt = btn.text(),
         username = $('#username').val()
-        pwd = $('#pwd').val()
+        pwd = $('#pwd').val(),
+        remember = $('#remember').val()
+
+        if(remember !== ''){
+            rememberme = 'true'
+        }else{
+            rememberme = 'false'
+        }
 
 
         if(username == ''){
-            $('span.form_error').text('Username is required')
-            $('input#username').css('margin-top', '20px')
+            $('.form_error').removeClass('d-none')
+            $('.form_error').text('Username is required')
+            // $('input#username').css('margin-top', '20px')
         }
         else if(pwd == ''){
-            $('span.form_error').text('Password is required')
-            $('input#username').css('margin-top', '20px')
+            $('.form_error').removeClass('d-none')
+            $('.form_error').text('Password is required')
+            // $('input#username').css('margin-top', '20px')
         }else{
 
         var form = {
             action: 'cwpl_login',
             username: username,
-            pwd: pwd
+            pwd: pwd,
+            rememberme: rememberme
         }
 
         btn.attr('disabled', 'true')
@@ -33,12 +43,13 @@ $(document).ready(function(){
 
                 window.location = response.url
             }else{
-                $('span.form_error').text(response.status)
-                $('input#username').css('margin-top', '20px')
+                $('.form_error').removeClass('d-none')
+                $('.form_error').html(response.status)
+                // $('input#username').css('margin-top', '20px')
 
                 btn.removeAttr('disabled')
                 $('.cwpl_custom_login div#spinner').remove()
-                btn.text(btnTxt)
+                btn.text(btnTxt) 
             }           
             
         })

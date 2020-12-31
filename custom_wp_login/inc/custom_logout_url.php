@@ -24,3 +24,29 @@ function custom_logout_url(){
         }        
     }
 }
+
+
+function custom_login_url(){
+
+    $cwpl_login_url = get_theme_mod('cwpl_logout_setting'); 
+    
+    if(isset($cwpl_login_url) && !empty($cwpl_login_url)){
+        $redirect_url = $cwpl_login_url;
+    }else{
+        $redirect_url = '/wp-login.php';
+    }        
+    
+
+    global $pagenow;
+
+    $cwpl_all_logout_setting = get_theme_mod('cwpl_all_logout_setting');
+    
+    
+     if($cwpl_all_logout_setting == 1){
+        if( $pagenow == 'wp-login.php' && !is_user_logged_in()){   
+            header( "Location:".site_url().$redirect_url);
+            exit('You are redirected to another page for login');              
+        }
+    }
+}
+

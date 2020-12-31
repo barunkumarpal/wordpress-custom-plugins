@@ -20,14 +20,16 @@ if(!defined('ABSPATH')){
                     <input type="text" class="form-control" placeholder="Username" id="username"/>
                 </div>
                 <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email" id="email"/>
+                </div>
+                <div class="form-group">
                     <input type="password" class="form-control" placeholder="Password" id="pwd"/>
                 </div>
                 <div class="form-group">
-                    <input type="checkbox" name="" id="remember">
-                    <label for="">Remember Me</label>
+                    <input type="password" class="form-control" placeholder="Confirm Password" id="re_pwd"/>
                 </div>
                 <div class="form-group text-right">
-                    <button type="submit" class="btn cwpl_custom_login">Login</button>
+                    <button type="submit" class="btn cwpl_custom_registration">Register</button>
                 </div>
             </div>
         </div>
