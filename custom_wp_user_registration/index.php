@@ -38,8 +38,12 @@ require_once($plugin_path.'/inc/cwpl_custom_registration_do.php');
 add_action('wp_ajax_nopriv_cwpur_register', 'cwpl_custom_registration_do');
 
 
-// Customizer for Logout Url
+// Customizer for Registration Url
 include($plugin_path.'/customizer/settings/logout_url_settings.php');
 include($plugin_path.'/customizer/sections.php');
 include($plugin_path.'/customizer/customizer.php');
 add_action('customize_register','cwpur_customize_register');
+
+// Add Signup link after menu links
+require_once($plugin_path.'/inc/cwpur_external_menus.php');
+add_filter('wp_nav_menu_items', 'cwpur_external_menus', 11,3);

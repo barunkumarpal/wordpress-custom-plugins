@@ -43,4 +43,30 @@ function cwpur_customize_register($wp_customize){
             'settings' => 'cwpur_user_register_setting'
         )
     );
+
+
+// Registratio Button Location Select
+
+$choices_array = get_registered_nav_menus();
+
+    // Setting
+    $wp_customize->add_setting(
+        'cwpur_user_register_location',
+        [
+            // 'transport' => 'postMessage', // or refresh
+            'default'    => 'primary'
+        ]
+    );
+
+    // Control
+    $wp_customize->add_control( 
+        'user_register_menu_location_id', 
+        array(
+            'label' => __( 'Registration Button Menu Location', 'CWPUR' ),
+            'type' => 'select',            
+            'section' => 'cwpur_plugin_panel_section',          
+            'settings' => 'cwpur_user_register_location',
+            'choices' => $choices_array // Associative Array ['key' => 'value']
+        )
+    );
 }

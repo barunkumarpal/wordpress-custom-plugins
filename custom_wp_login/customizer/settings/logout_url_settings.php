@@ -48,5 +48,36 @@ $wp_customize->add_setting(
     );
 
 
+
+
+    // Menu Selection Control
+
+    $choices_array = get_registered_nav_menus();
+
+
+
+
+
+    $wp_customize->add_setting(
+        'cwpl_all_menu_locations',
+        [
+            // 'transport' => 'postMessage', // or refresh
+            // 'type' => 'option'
+            'default'    => 'primary'
+        ]
+    );
+
+    // Control
+    $wp_customize->add_control( 
+        'all_menu_locations_id', 
+        array(
+            'label' => __( 'Select Menu to show login button', 'cwpl' ),
+            'description' => "Login button to which menu?",
+            'type' => 'select',            
+            'section' => 'cwpl_plugin_panel_section',                     
+            'settings' => 'cwpl_all_menu_locations',
+            'choices' => $choices_array // Associative Array ['key' => 'value']
+        )
+    );
     
 }

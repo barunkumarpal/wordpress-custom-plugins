@@ -45,3 +45,8 @@ include($plugin_path.'/customizer/settings/logout_url_settings.php');
 include($plugin_path.'/customizer/sections.php');
 include($plugin_path.'/customizer/customizer.php');
 add_action('customize_register','cwpl_customize_register');
+
+
+// Add Signin / Signup link after menu links
+require_once($plugin_path.'/inc/cwpl_external_menus.php');
+add_filter('wp_nav_menu_items', 'cwpl_external_menus', 10, 2);
