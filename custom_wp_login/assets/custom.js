@@ -4,7 +4,8 @@ $(document).ready(function(){
         btnTxt = btn.text(),
         username = $('#username').val()
         pwd = $('#pwd').val(),
-        remember = $('#remember').val()
+        remember = $('#remember').val(),
+        g_recaptcha_response = $('.g-recaptcha-response').val()
 
         if(remember !== ''){
             rememberme = 'true'
@@ -28,13 +29,17 @@ $(document).ready(function(){
             action: 'cwpl_login',
             username: username,
             pwd: pwd,
-            rememberme: rememberme
+            rememberme: rememberme,
+            g_recaptcha_response: g_recaptcha_response
         }
 
         btn.attr('disabled', 'true')
         btn.html('<div class="spinner-border text-light" id="spinner"></div>')
 
-        $.post(cwpl_wp_ajax_obj.ajax_url, form, function(response){ 
+        $.post(cwpl_wp_ajax_obj.ajax_url, form, function(response){             
+
+            $('.error').text('')
+            $('.form_error').text('')
             
             if(response.status == 1 ){                
                 btn.removeAttr('disabled')
@@ -44,13 +49,25 @@ $(document).ready(function(){
                 window.location = response.url
             }else{
                 $('.form_error').removeClass('d-none')
-                $('.form_error').html(response.status)
-                // $('input#username').css('margin-top', '20px')
+
+                if(response.login_error !== ''){
+                    $('.form_error').html(response.login_error)               
+                }else{
+                    // $('.form_error').html(response.status)    
+                }
 
                 btn.removeAttr('disabled')
                 $('.cwpl_custom_login div#spinner').remove()
                 btn.text(btnTxt) 
-            }           
+            }   
+            
+            if(response.captcha_error !== ''){
+                $('.error.captcha_error').text(response.captcha_error)
+
+                btn.removeAttr('disabled')
+                $('.cwpl_custom_login div#spinner').remove()
+                btn.text(btnTxt) 
+            }
             
         })
 

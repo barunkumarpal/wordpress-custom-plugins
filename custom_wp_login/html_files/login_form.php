@@ -4,6 +4,8 @@ if(!defined('ABSPATH')){
     die('Direct access not allowed');
 }
 ?>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <div class="container custom_login_form_area">
     <div class="row justify-content-center">
         <div class="col-md-5 column">
@@ -22,6 +24,12 @@ if(!defined('ABSPATH')){
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Password" id="pwd"/>
                 </div>
+
+                <?php if(!empty(get_theme_mod('cwpl_captcha_sitekey')) && get_theme_mod('cwpl_captcha_option') == 1){?>
+                    <div class="g-recaptcha" data-sitekey="<?php echo get_theme_mod('cwpl_captcha_sitekey'); ?>"></div>
+                <?php } ?>
+                <span class="error captcha_error text-danger"></span>
+
                 <div class="form-group">
                     <input type="checkbox" name="" id="remember">
                     <label for="">Remember Me</label>

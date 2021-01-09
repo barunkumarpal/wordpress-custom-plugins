@@ -7,7 +7,7 @@ if(!function_exists('add_action')){
     exit('Direct access not allowed');
     die('Direct access not allowed');
 }
-
+// Redirect on logout to the custom url
 function custom_logout_url(){
     global $pagenow;
 
@@ -25,7 +25,7 @@ function custom_logout_url(){
     }
 }
 
-
+// Redirect on wp-admin login to custom url
 function custom_login_url(){
 
     $cwpl_login_url = get_theme_mod('cwpl_logout_setting'); 

@@ -55,9 +55,6 @@ $wp_customize->add_setting(
     $choices_array = get_registered_nav_menus();
 
 
-
-
-
     $wp_customize->add_setting(
         'cwpl_all_menu_locations',
         [
@@ -77,6 +74,66 @@ $wp_customize->add_setting(
             'section' => 'cwpl_plugin_panel_section',                     
             'settings' => 'cwpl_all_menu_locations',
             'choices' => $choices_array // Associative Array ['key' => 'value']
+        )
+    );
+
+
+
+    // Captcha Settings
+
+    $wp_customize->add_setting(
+        'cwpl_captcha_option',
+        [ 'default'    => 1 ]
+    );
+
+    // Control
+    $wp_customize->add_control( 
+        'cwpl_captcha_option_id', 
+        array(
+            'label' => __( 'Yes', 'cwpl' ),
+            'description' => "Do you want google captcha for login? Users need to verify them as human not a bot. Bots won't be able to login through this process",
+            'type' => 'checkbox',            
+            'section' => 'cwpl_plugin_panel_section',                     
+            'settings' => 'cwpl_captcha_option',
+            'value'        => '1'
+        )
+    );
+
+    // Captcha Site Key
+
+    $wp_customize->add_setting(
+        'cwpl_captcha_sitekey',
+        []
+    );
+
+    // Control
+    $wp_customize->add_control( 
+        'cwpl_captcha_sitekey_id', 
+        array(
+            'label' => __( 'Google Re-Captcha Sitekey', 'cwpl' ),
+            'description' => "",
+            'type' => 'text',            
+            'section' => 'cwpl_plugin_panel_section',                     
+            'settings' => 'cwpl_captcha_sitekey'            
+        )
+    );
+
+    // Captcha Secret Key
+
+    $wp_customize->add_setting(
+        'cwpl_captcha_secret',
+        []
+    );
+
+    // Control
+    $wp_customize->add_control( 
+        'cwpl_captcha_secret_id', 
+        array(
+            'label' => __( 'Google Re-Captcha Secret-key', 'cwpl' ),
+            'description' => "",
+            'type' => 'text',            
+            'section' => 'cwpl_plugin_panel_section',                     
+            'settings' => 'cwpl_captcha_secret'            
         )
     );
     
